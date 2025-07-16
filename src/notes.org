@@ -1,0 +1,20 @@
+* TASK 3::
+
+First create a sample_code.c program.
+#+BEGIN_SRC c
+  int main() {
+    int x = 10;
+    if (x > 5) {
+      x = x + 1;
+    }
+    return x;
+   }
+  
+#+END_SRC
+
+To use it first run the following commands (for unix and windows, they are same)
+
+#+BEGIN_SRC bash
+  $gcc task3.c
+  $./a.out
+#+END_SRC

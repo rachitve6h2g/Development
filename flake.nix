@@ -15,6 +15,11 @@
           pkgs.gnumake  # optional, but usually needed
           pkgs.gdb      # optional, for debugging
         ];
+
+	shellHook = ''
+		  alias ec='emacsclient -c'
+		  echo "C dev environment ready to use"
+	'';
       };
     };
 }
