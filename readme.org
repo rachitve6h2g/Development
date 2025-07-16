@@ -1,0 +1,8 @@
+* DESCRIPTION
+This repo is for uploading my C projects, given as tasks by CodTech internships
+
+*** Some Details:
+- EDITOR :: emacs
+- OPERATING SYSTEM :: NixOS (GNU/Linux)
+- WINDOW MANAGER :: Niri WM
+ 
