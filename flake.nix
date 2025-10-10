@@ -15,17 +15,20 @@
     {
       devShells.${system}.default = pkgs.mkShell {
         name = "c-dev-shell";
-        packages = [
-          pkgs.gcc
-          pkgs.gnumake # optional, but usually needed
-          pkgs.gdb # optional, for debugging
-          pkgs.clang-tools
+        # buildInputs = with pkgs; [ bashInteractive ];
+        packages = with pkgs; [
+          gcc
+          gnumake # optional, but usually needed
+          gdb # optional, for debugging
+          clang-tools
         ];
 
-        shellHook = ''
-          		  alias ec='emacsclient -c'
-          		  echo "C dev environment ready to use"
-          	'';
+        shellHook = # bash
+          ''
+            export SHELL=/run/current-system/sw/bin/bash
+            alias ec='emacsclient -c'
+            echo "C dev environment ready to use"
+          '';
       };
     };
 }
