@@ -21,6 +21,7 @@
           gnumake # optional, but usually needed
           gdb # optional, for debugging
           clang-tools
+          valgrind
         ];
 
         shellHook = # bash
