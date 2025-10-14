@@ -1,4 +1,5 @@
 #include "array_utils.h"
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,6 +30,17 @@ int printArray(int *arr, int size) {
   }
   printf("\n");
   return 0;
+}
+
+int removeDups(int *arr, int size) {
+  bubbleSort(arr, size);
+  int j = 0;
+  for (int i = 1; i < size; i++) {
+    if (arr[i] != arr[j]) {
+      arr[++j] = arr[i];
+    }
+  }
+  return j + 1;
 }
 
 int **create2DArr(int rows, int cols) {
@@ -77,7 +89,7 @@ int print2DMatrix(int **arr, int rows, int cols) {
   int i, j;
   for (i = 0; i < rows; i++) {
     for (j = 0; j < cols; j++) {
-      printf("%d  ", *(*(arr + i) + j));
+      printf("%3d  ", *(*(arr + i) + j));
     }
     printf("\n");
   }
@@ -93,55 +105,96 @@ int sumOfElements(int *arr, int size) {
   return sum;
 }
 
-int maxElement(int *arr, int size) {
+int maxElement(int *arr, int size, int *index) {
   int i, max;
   max = *(arr + 0); // Make the first element the max
   for (i = 1; i < size; i++) {
-    if (*(arr + i) > max)
+    if (*(arr + i) > max) {
       max = *(arr + i);
+      *index = i;
+    }
   }
   printf("\n");
   return max;
 }
 
-int minElement(int *arr, int size) {
+int minElement(int *arr, int size, int *index) {
   int i, min;
-  min = *(arr + i);
+  min = *(arr + 0);
+  *index = 0;
 
   for (i = 1; i < size; i++) {
-    if (*(arr + i) < min)
+    if (*(arr + i) < min) {
       min = *(arr + i);
+      *index = i;
+    }
   }
 
   printf("\n");
   return min;
 }
 
-int secondMaxElement(int *arr, int size) {
-  int i, pos, max, secondMax;
-  max = *(arr + 0);
+int secondMaxElement(int *arr, int size, int *index) {
+  // If array is just one element return the element itself.
+  if (size < 2) {
+    return arr[0];
+  }
+
+  int i, posMax, posSecond, max, secondMax;
+
+  posMax = 0, posSecond = -1;
+  max = arr[0];
+  secondMax = INT_MIN;
+
   for (i = 1; i < size; i++) {
     if (*(arr + i) > max) {
       secondMax = max;
+      posSecond = posMax;
       max = *(arr + i);
-    } else if (*(arr + i) > secondMax && *(arr + i) < max)
+      posMax = i;
+    } else if (*(arr + i) > secondMax && *(arr + i) < max) {
       secondMax = *(arr + i);
+      posSecond = i;
+    }
   }
 
+  if (posSecond == -1)
+    posSecond = posMax;
+
+  *index = posSecond;
   printf("\n");
   return secondMax;
 }
 
-int secondMinElement(int *arr, int size) {
-  int i, pos, min, secondMin;
-  min = *(arr + 0);
+int secondMinElement(int *arr, int size, int *index) {
+  // If array has only one element then return the array.
+  if (size < 2)
+    return arr[0];
+
+  int i, posMin, posSecond, min, secondMin;
+
+  min = arr[0];
+  secondMin = INT_MIN;
+
+  posMin = 0;
+  posSecond = -1;
+
   for (i = 1; i < size; i++) {
     if (*(arr + i) < min) {
       secondMin = min;
+      posSecond = posMin;
       min = *(arr + i);
-    } else if (*(arr + i) < secondMin && *(arr + i) > min)
+      posMin = i;
+    } else if (*(arr + i) < secondMin && *(arr + i) > min) {
       secondMin = *(arr + i);
+      posSecond = i;
+    }
   }
+
+  if (posSecond == -1)
+    posSecond = posMin;
+
+  *index = posSecond;
 
   printf("\n");
   return secondMin;

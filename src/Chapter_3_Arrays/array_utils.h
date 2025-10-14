@@ -1,8 +1,11 @@
 #ifndef ARRAY_UTILS_H
 #define ARRAY_UTILS_H
 
+int swap(int *a, int *b);
+
 int takeArray(int *arr, int size);  // take and
-int printArray(int *arr, int size); // print an integer array
+int printArray(int *arr, int size); // print an integer array.
+int removeDups(int *arr, int size); // Remove duplicate elements.
 
 int **create2DArr(int rows, int cols);
 int take2DArray(int **arr, int rows, int cols);
@@ -11,10 +14,10 @@ int print2DMatrix(int **arr, int rows, int cols);
 
 int sumOfElements(int *arr, int size); // To get the sum of elements in an array
 
-int maxElement(int *arr, int size);
-int minElement(int *arr, int size);
-int secondMaxElement(int *arr, int size);
-int secondMinElement(int *arr, int size);
+int maxElement(int *arr, int size, int *index);
+int minElement(int *arr, int size, int *index);
+int secondMaxElement(int *arr, int size, int *index);
+int secondMinElement(int *arr, int size, int *index);
 
 int reverseArray(int *arr, int size);
 
